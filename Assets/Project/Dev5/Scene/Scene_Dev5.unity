@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 350884597}
   - component: {fileID: 350884598}
+  - component: {fileID: 350884599}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -251,6 +252,20 @@ MonoBehaviour:
   timeBetweenSpawn: 3
   startPos: {x: -8.19, y: 4.42, z: 0}
   endPos: {x: 9.9, y: 4.42, z: 0}
+--- !u!114 &350884599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350884596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be555d2bc313ecb4e99b7f25a5227687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  levelData: {fileID: 11400000, guid: e1de10b496f54f94a96539aafd42b2e3, type: 2}
+  spawnPoints: []
 --- !u!1 &575840435
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: NewLevelData
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  allWaves:
+  - waveName: Wave
+    enemiesToSpawn:
+    - enemyPrefab: {fileID: 6414767215656660622, guid: a09e28877bccd774eaf25b7664e66be1, type: 3}
+      spawnDelay: 3
+      laneIndex: 1
+    - enemyPrefab: {fileID: 6414767215656660622, guid: a09e28877bccd774eaf25b7664e66be1, type: 3}
+      spawnDelay: 2
+      laneIndex: 2
