@@ -7,12 +7,17 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance;
 
     [Header("Data Configuration")]
-    [SerializeField] private LevelData levelData; // Bỏ file LevelData đã tạo ở Bước 2 vào đây
-    [SerializeField] private Transform[] spawnPoints; // Mảng chứa các vị trí xuất hiện (5 hàng ở rìa phải)
+    [SerializeField]
+    private LevelData levelData; // Bỏ file LevelData đã tạo ở Bước 2 vào đây
+    [SerializeField]
+    private Transform[] spawnPoints; // Mảng chứa các vị trí xuất hiện (5 hàng ở rìa phải)
 
     [Header("Runtime State")]
+    [SerializeField]
     private int currentWaveIndex = 0;
+    [SerializeField]
     private int activeEnemiesCount = 0; // Số lượng quái đang còn sống trên sân
+    [SerializeField]
     private bool isSpawningWave = false;
 
     private void Awake()
@@ -67,6 +72,8 @@ public class WaveManager : MonoBehaviour
             Debug.Log("Wave đã sạch bóng quái!");
             currentWaveIndex++;
 
+            // CALL IT HERE: Automatically trigger the next wave!
+            TriggerNextWave();
         }
     }
     public void TriggerNextWave()

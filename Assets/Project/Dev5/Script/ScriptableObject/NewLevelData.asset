@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: NewLevelData
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   allWaves:
-  - waveName: Wave
+  - waveName: Wave1
     enemiesToSpawn:
     - enemyPrefab: {fileID: 6414767215656660622, guid: a09e28877bccd774eaf25b7664e66be1, type: 3}
       spawnDelay: 3
       laneIndex: 1
+    - enemyPrefab: {fileID: 6414767215656660622, guid: a09e28877bccd774eaf25b7664e66be1, type: 3}
+      spawnDelay: 3
+      laneIndex: 2
+  - waveName: Wave2
+    enemiesToSpawn:
     - enemyPrefab: {fileID: 6414767215656660622, guid: a09e28877bccd774eaf25b7664e66be1, type: 3}
       spawnDelay: 2
       laneIndex: 2
