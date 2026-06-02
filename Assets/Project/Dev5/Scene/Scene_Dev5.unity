@@ -1140,10 +1140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af64416cf9482e142bb301629962af31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroPlacementManager
-  rows: 4
+  rows: 5
   columns: 9
   cellSize: 1
   gridOrigin: {x: -4.5, y: -2.5}
+  selectedHeroType: 0
+  heroPrefabs:
+  - type: 0
+    prefab: {fileID: 540601842125974294, guid: da2c5db64b95c444d9344bf35ec97775, type: 3}
+    cost: 50
 --- !u!4 &1314445926
 Transform:
   m_ObjectHideFlags: 0
@@ -1310,6 +1315,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1319a68d6045144a2e5150c4b4dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndZone
+--- !u!1 &1827874713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827874714}
+  m_Layer: 0
+  m_Name: HeroPlacementEventLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827874714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827874713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1855180909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,3 +1846,4 @@ SceneRoots:
   - {fileID: 615562432}
   - {fileID: 1193717134}
   - {fileID: 1314445926}
+  - {fileID: 1827874714}

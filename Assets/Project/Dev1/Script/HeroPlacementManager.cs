@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class HeroPlacementManager : MonoBehaviour
 {
+    public static event System.Action<int, int, GameObject, HeroType> OnHeroPlaced;
+
     [Header("Grid Settings")]
     [Min(1)]
     public int rows = 5;
@@ -11,6 +14,10 @@ public class HeroPlacementManager : MonoBehaviour
     [Min(0.1f)]
     public float cellSize = 1f;
     public Vector2 gridOrigin;
+
+    [Header("Hero Settings")]
+    public HeroType selectedHeroType;
+    public HeroPrefabEntry[] heroPrefabs;
 
     private GridCell[,] cells;
 
@@ -69,6 +76,12 @@ public class HeroPlacementManager : MonoBehaviour
             return;
         }
 
+        if (IsPointerOverUI())
+        {
+            Debug.Log("Pointer is over UI. Placement ignored.");
+            return;
+        }
+
         if (Camera.main == null)
         {
             Debug.LogWarning("HeroPlacementManager needs a camera tagged MainCamera.");
@@ -84,11 +97,104 @@ public class HeroPlacementManager : MonoBehaviour
         {
             Vector2 center = GetCellCenterWorldPosition(row, column);
             Debug.Log($"Clicked grid cell: row {row}, column {column}, center {center}");
+            TryPlaceHero(row, column);
         }
         else
         {
             Debug.Log("Clicked outside hero placement grid.");
         }
+    }
+
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void TryPlaceHero(int row, int column)
+    {
+        if (!IsValidCell(row, column))
+        {
+            Debug.Log("Cannot place Hero: invalid cell.");
+            return;
+        }
+
+        GridCell cell = cells[row, column];
+
+        if (cell.isOccupied)
+        {
+            Debug.Log($"Cannot place Hero: cell row {row}, column {column} is already occupied.");
+            return;
+        }
+
+        GameObject heroPrefab = GetHeroPrefab(selectedHeroType);
+
+        if (heroPrefab == null)
+        {
+            Debug.LogWarning($"Cannot place Hero: no prefab assigned for {selectedHeroType}.");
+            return;
+        }
+
+        int heroCost = GetHeroCost(selectedHeroType);
+
+        if (!TryPayHeroCost(heroCost))
+        {
+            Debug.Log($"Cannot place Hero: not enough Hao Khi for {selectedHeroType}.");
+            return;
+        }
+
+        GameObject placedHero = Instantiate(heroPrefab, cell.centerWorldPosition, Quaternion.identity);
+        cell.placedHero = placedHero;
+        cell.isOccupied = true;
+
+        OnHeroPlaced?.Invoke(row, column, placedHero, selectedHeroType);
+
+        Debug.Log($"Placed {selectedHeroType} at row {row}, column {column}.");
+    }
+
+    private GameObject GetHeroPrefab(HeroType type)
+    {
+        if (heroPrefabs == null)
+        {
+            return null;
+        }
+
+        foreach (HeroPrefabEntry entry in heroPrefabs)
+        {
+            if (entry != null && entry.type == type)
+            {
+                return entry.prefab;
+            }
+        }
+
+        return null;
+    }
+
+    private int GetHeroCost(HeroType type)
+    {
+        if (heroPrefabs == null)
+        {
+            return 0;
+        }
+
+        foreach (HeroPrefabEntry entry in heroPrefabs)
+        {
+            if (entry != null && entry.type == type)
+            {
+                return entry.cost;
+            }
+        }
+
+        return 0;
+    }
+
+    private bool TryPayHeroCost(int cost)
+    {
+        return true;
     }
 
     private void OnDrawGizmos()
