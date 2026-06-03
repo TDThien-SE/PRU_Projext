@@ -12,6 +12,15 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
+# Prevent accidentally committing a nested Unity project/cache inside Assets.
+/[Aa]ssets/**/[Ll]ibrary/
+/[Aa]ssets/**/[Tt]emp/
+/[Aa]ssets/**/[Oo]bj/
+/[Aa]ssets/**/[Ll]ogs/
+/[Aa]ssets/**/[Uu]ser[Ss]ettings/
+/[Aa]ssets/**/[Pp]roject[Ss]ettings/
+/[Aa]ssets/**/[Pp]ackages/
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
